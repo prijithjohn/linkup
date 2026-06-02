@@ -1,0 +1,216 @@
+/* ==========================================================================
+   LinkUp AI Studio Layout Rules (Appended cleanly to your design system)
+   ========================================================================== */
+
+.app-container {
+    padding: 40px 60px;
+    box-sizing: border-box;
+    text-align: left; /* Counteracts body text-align: center for better form layouts */
+}
+
+@media (max-width: 1024px) {
+    .app-container {
+        padding: 20px;
+    }
+}
+
+.header {
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    text-align: left;
+}
+
+.brand-title {
+    font-size: 42px;
+    font-weight: 500;
+    letter-spacing: -1.2px;
+    margin: 0;
+    color: var(--text-h);
+}
+
+.brand-badge {
+    color: var(--accent); /* Uses your custom purple accent token */
+    font-weight: 400;
+}
+
+.brand-subtitle {
+    font-size: 15px;
+    color: var(--text);
+    margin: 8px 0 0 0;
+}
+
+/* Main Split Panel Workspace Grid */
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    text-align: left;
+}
+
+@media (max-width: 1024px) {
+    .workspace-grid {
+        grid-template-columns: 1fr; /* Stacks vertically on mobile screens */
+        gap: 20px;
+    }
+}
+
+/* Panel Modular Cards */
+.panel-card {
+    background-color: var(--bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.section-heading {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: var(--text-h);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+    .form-group-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.field-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.text-input, .select-dropdown, .text-area {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    font-family: var(--sans);
+    color: var(--text-h);
+    background: var(--bg);
+    transition: border-color 0.15s ease;
+}
+
+.text-input:focus, .select-dropdown:focus, .text-area:focus {
+    border-color: var(--accent);
+}
+
+.text-area {
+    height: 160px;
+    resize: none;
+    line-height: 145%;
+}
+
+/* Buttons Architecture */
+.primary-btn {
+    width: 100%;
+    background-color: var(--accent);
+    color: var(--bg);
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    font-family: var(--sans);
+    transition: filter 0.15s ease;
+}
+
+.primary-btn:hover {
+    filter: brightness(90%);
+}
+
+.primary-btn:disabled {
+    background-color: var(--border);
+    color: var(--text);
+    cursor: not-allowed;
+}
+
+/* Premium Contrast Workspace Block Output (White Text on Dark Box) */
+.output-box-container {
+    flex: 1;
+    background-color: #1a191d; /* Solid dark carbon container for visual hierarchy */
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 280px;
+    display: flex;
+    border: 1px solid #2e2c33;
+    box-sizing: border-box;
+}
+
+.output-content-area {
+    width: 100%;
+    font-size: 14px;
+    line-height: 155%;
+    color: #ffffff; /* Stark white text rendering profile */
+    white-space: pre-wrap;
+    font-family: var(--sans);
+    text-align: left;
+}
+
+/* Action Control Row */
+.action-btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.copy-btn, .regenerate-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.15s ease;
+    border: none;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.copy-btn {
+    background-color: var(--code-bg);
+    color: var(--text-h);
+    border: 1px solid var(--border);
+}
+
+.copy-btn:hover {
+    filter: brightness(95%);
+}
+
+.regenerate-btn {
+    background-color: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+}
+
+.regenerate-btn:hover {
+    background-color: var(--accent-bg);
+}

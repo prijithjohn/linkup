@@ -1,0 +1,36 @@
+{
+  "name": "LinkUp AI Assistant",
+  "description": "AI-powered LinkedIn messaging and networking generator",
+  "version": "1.0.1",
+  "manifest_version": 3,
+
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+
+  "host_permissions": [
+    "http://localhost:8086/*",
+    "https://www.linkedin.com/*"
+  ],
+
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": ["https://www.linkedin.com/*"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["icon/*"],
+      "matches": ["https://www.linkedin.com/*"]
+    }
+  ],
+
+  "action": {
+    "default_title": "LinkUp AI Assistant"
+  }
+}
