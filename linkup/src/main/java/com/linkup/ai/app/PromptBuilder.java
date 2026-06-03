@@ -3,11 +3,6 @@ package com.linkup.ai.app;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Minimal token-efficient prompt builder for Groq API.
- * Structures prompts as: TASK | TONE | INPUT | OUTPUT_RULES
- * Target: 80-150 tokens per prompt
- */
 public class PromptBuilder {
 
     private static final Map<String, String> TASK_TEMPLATES = new HashMap<>();
