@@ -16,9 +16,7 @@ import axios from 'axios';
 import { TypeAnimation } from 'react-type-animation';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-// ---------------------------
-// ACTION NORMALIZER (IMPORTANT)
-// ---------------------------
+
 const normalizeAction = (action) => {
   switch (action) {
     case "LinkedIn Follow-up":
@@ -48,9 +46,7 @@ function App() {
   const [targetRole, setTargetRole] = useState('');
   const [targetCompany, setTargetCompany] = useState('');
 
-  // ---------------------------
-  // API CALL
-  // ---------------------------
+
   const handleSubmit = async () => {
     setLoading(true);
     setError('');
