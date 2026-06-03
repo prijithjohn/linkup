@@ -44,9 +44,7 @@ public class LinkedInAIService {
                 : new LinkedInResponse(AIConstants.FALLBACK_REPLY, tone, action);
     }
 
-    /**
-     * Build optimized prompt using minimal token structure.
-     */
+   
     private String buildPrompt(String action, String tone, String context, LinkedInRequest request, boolean fastMode) {
         if (fastMode) {
             return PromptBuilder.buildFastPrompt(tone, context);
@@ -62,9 +60,7 @@ public class LinkedInAIService {
         );
     }
 
-    /**
-     * Call Groq API with minimal token configuration.
-     */
+  
     private LinkedInResponse callGroqAPI(String prompt, String action, String tone, boolean fastMode) {
         try {
             Map<String, Object> body = buildRequestBody(prompt, fastMode);
@@ -94,9 +90,8 @@ public class LinkedInAIService {
         }
     }
 
-    /**
-     * Build request body for Groq API.
-     */
+    
+
     private Map<String, Object> buildRequestBody(String prompt, boolean fastMode) {
         return Map.of(
                 "model", AIConstants.GROQ_MODEL,
@@ -106,10 +101,7 @@ public class LinkedInAIService {
         );
     }
 
-    /**
-     * Extract reply content from Groq API JSON response.
-     * Safe fallback handling for malformed or null responses.
-     */
+    
     private String extractResponse(String response) {
         if (response == null || response.isBlank()) {
             logger.warn("Null response from API");
@@ -138,9 +130,6 @@ public class LinkedInAIService {
         }
     }
 
-    /**
-     * Sanitize and validate context input.
-     */
     private String sanitizeContext(String context) {
         if (context == null || context.isBlank()) {
             return "";
@@ -154,9 +143,7 @@ public class LinkedInAIService {
         return context;
     }
 
-    /**
-     * Sanitize tone input.
-     */
+  
     private String sanitizeTone(String tone) {
         if (tone == null || tone.isBlank()) {
             return AIConstants.DEFAULT_TONE;
@@ -164,9 +151,7 @@ public class LinkedInAIService {
         return tone.trim();
     }
 
-    /**
-     * Normalize action to match AIConstants values.
-     */
+  
     private String normalizeAction(String action) {
         if (action == null || action.isBlank()) {
             return AIConstants.DEFAULT_ACTION;
@@ -183,9 +168,7 @@ public class LinkedInAIService {
                 : AIConstants.DEFAULT_ACTION;
     }
 
-    /**
-     * Log prompt (without API key) for debugging.
-     */
+
     private void logRequest(String prompt) {
         logger.debug("Groq API prompt: {} tokens (approx)", prompt.split("\\s+").length);
     }
