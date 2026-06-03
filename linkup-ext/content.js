@@ -2,9 +2,6 @@ console.log("LinkUp AI Assistant Loaded Successfully");
 
 let currentPopup = null;
 
-// -------------------------------
-// 1. LINKEDIN SELECTORS
-// -------------------------------
 const LINKEDIN_FOOTER_SELECTORS = [
     '.msg-messaging-form__footer',
     '.msg-form__footer',
@@ -16,9 +13,7 @@ const LINKEDIN_CHAT_INPUT = '.msg-messaging-form__editable-content, .msg-form__c
 const LINKEDIN_MESSAGE_BUBBLE = '.msg-s-message-list-item__body, .msg-s-event-listitem__body';
 const LINKEDIN_HEADER_NAME = '.msg-entity-lockup__title, .msg-overlay-conversation-bubble__name, .msg-thread-header__title';
 
-// -------------------------------
-// 2. AI BUTTON
-// -------------------------------
+
 function createAIButton() {
     const button = document.createElement('div');
 
@@ -45,9 +40,7 @@ function createAIButton() {
     return button;
 }
 
-// -------------------------------
-// 3. API CALL (FAST MODE ONLY)
-// -------------------------------
+
 async function callAI(emailContent, tone = "Professional", recipientName = "") {
 
     const payload = {
@@ -94,9 +87,7 @@ async function callAI(emailContent, tone = "Professional", recipientName = "") {
     return data.reply;
 }
 
-// -------------------------------
-// 4. CONTEXT HELPERS
-// -------------------------------
+
 function getChatContext(wrapper) {
     if (!wrapper || wrapper === document) {
         const messages = document.querySelectorAll(LINKEDIN_MESSAGE_BUBBLE);
@@ -120,9 +111,7 @@ function getComposeBox(wrapper) {
     return wrapper.querySelector(LINKEDIN_CHAT_INPUT);
 }
 
-// -------------------------------
-// 5. POPUP UI
-// -------------------------------
+
 function createPopup(text, wrapper, context) {
 
     console.log('LinkUp AI popup created', { text, context });
@@ -202,7 +191,7 @@ function createPopup(text, wrapper, context) {
         popup.remove();
     };
 
-    // regenerate (still FAST)
+    // regenerate 
     popup.querySelector("#regen").onclick = async () => {
         const tone = popup.querySelector("#tone").value;
 
@@ -217,9 +206,7 @@ function createPopup(text, wrapper, context) {
     return popup;
 }
 
-// -------------------------------
-// 6. BUTTON INJECTION ENGINE
-// -------------------------------
+
 function injectButton() {
     console.log("LinkUp AI injectButton invoked");
 
@@ -276,9 +263,7 @@ function injectButton() {
     });
 }
 
-// -------------------------------
-// 7. OBSERVER
-// -------------------------------
+
 const observer = new MutationObserver(() => injectButton());
 
 injectButton();
