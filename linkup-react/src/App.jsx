@@ -69,21 +69,38 @@ function App() {
     }
 
     try {
+      const payload = {
+        emailContent: cleanedContext || "",
+        tone,
+        action: normalizeAction(action),
+        recipientName,
+        targetRole,
+        targetCompany
+      };
+
+      console.log("Submitting request", payload);
+
       const response = await axios.post(
-        "http://localhost:8086/api/email/generate",
+        "http://localhost:8086/api/linkedin/generate",
+        payload,
         {
-          emailContent: cleanedContext || "",
-          tone,
-          action: normalizeAction(action),
-          recipientName,
-          targetRole,
-          targetCompany
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
       );
 
-      setGeneratedReply(response.data.reply);
+      console.log("API response", response);
+      setGeneratedReply(response.data?.reply || "");
     } catch (err) {
-      setError("Failed to generate response.");
+      console.error("Remote API error", err);
+      const backendError =
+        err?.response?.data?.message ||
+        err?.response?.data?.error ||
+        err?.response?.data?.reply ||
+        err?.message ||
+        "Failed to generate response.";
+      setError(backendError);
     } finally {
       setLoading(false);
     }

@@ -1,23 +1,25 @@
 package com.linkup.ai.app;
 
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
 
+/**
+ * Request payload for AI reply generation.
+ * Supports multiple use cases: LinkedIn fast-reply and quality reply.
+ */
 @Data
 public class LinkedInRequest {
 
-    @NotBlank(message = "Email content cannot be empty")
-    private String emailContent;
+    @JsonAlias({"emailContent", "message"})
+    private String messageContent;
 
     private String tone;
     private String action;
-
-    // 🧠 NEW: Explicit AI routing control
-    // FAST = extension
-    // PRO = web app
-    private String mode;
-
     private String recipientName;
     private String targetRole;
     private String targetCompany;
+
+    public void setMessage(String message) {
+        this.messageContent = message;
+    }
 }

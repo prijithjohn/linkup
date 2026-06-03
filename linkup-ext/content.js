@@ -51,21 +51,46 @@ function createAIButton() {
 async function callAI(emailContent, tone = "Professional", recipientName = "") {
 
     const payload = {
-        emailContent,
+        messageContent: emailContent,
         tone,
-        action: "FAST_REPLY", // IMPORTANT: forces backend fast mode
         recipientName,
         targetRole: "Professional",
         targetCompany: ""
     };
 
-    const response = await fetch('http://localhost:8086/api/email/generate', {
+    console.log("LinkUp AI request payload", payload);
+
+    const response = await fetch('http://localhost:8086/api/linkedin/fast-reply', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(payload)
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
+
+    if (!response.ok) {
+        console.error(`LinkUp AI backend error: ${response.status} ${response.statusText}`, responseText);
+        throw new Error(`AI backend error ${response.status}: ${responseText || response.statusText}`);
+    }
+
+    let data;
+    try {
+        data = JSON.parse(responseText);
+    } catch (parseError) {
+        console.error('LinkUp AI response JSON parse failed', parseError, responseText);
+        throw new Error('Failed to parse AI response');
+    }
+
+    console.log('LinkUp AI response data', data);
+
+    if (!data || typeof data.reply !== 'string') {
+        throw new Error('Invalid AI response format');
+    }
+
     return data.reply;
 }
 
@@ -99,6 +124,8 @@ function getComposeBox(wrapper) {
 // 5. POPUP UI
 // -------------------------------
 function createPopup(text, wrapper, context) {
+
+    console.log('LinkUp AI popup created', { text, context });
 
     if (currentPopup) currentPopup.remove();
 
@@ -194,6 +221,7 @@ function createPopup(text, wrapper, context) {
 // 6. BUTTON INJECTION ENGINE
 // -------------------------------
 function injectButton() {
+    console.log("LinkUp AI injectButton invoked");
 
     let toolbars = [];
 
@@ -236,8 +264,8 @@ function injectButton() {
                 createPopup(reply, wrapper, context);
 
             } catch (err) {
-                console.error(err);
-                alert("AI failed");
+                console.error('LinkUp AI request failed', err);
+                alert("AI failed: " + (err.message || "Unknown error"));
             } finally {
                 button.innerHTML = "✨ AI Reply";
                 button.style.background = "#0a66c2";
