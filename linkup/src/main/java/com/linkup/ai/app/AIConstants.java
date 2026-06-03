@@ -1,9 +1,5 @@
 package com.linkup.ai.app;
 
-/**
- * Constants for AI service configuration and API contracts.
- * Eliminates hardcoded magic strings throughout the application.
- */
 public class AIConstants {
 
     // Action types
