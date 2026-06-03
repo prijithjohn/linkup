@@ -3,10 +3,6 @@ package com.linkup.ai.app;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
 
-/**
- * Request payload for AI reply generation.
- * Supports multiple use cases: LinkedIn fast-reply and quality reply.
- */
 @Data
 public class LinkedInRequest {
 
