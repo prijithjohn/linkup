@@ -11,8 +11,8 @@ The system combines a Spring Boot backend, React frontend, Chrome Extension inte
 # 🎥 Demo Video
 
 <p align="center">
-  <a href="YOUR_DEMO_VIDEO_LINK">
-    <img src="screenshots/home.png" width="85%" alt="LinkUp AI Demo"/>
+  <a href="https://drive.google.com/file/d/1AX5lyAVrnhNZ1xDoS_78twR2Jn-2aCS3/view?usp=sharing">
+    <img src="Screenshots/Screenshot 2026-06-03 005319.png" width="85%" alt="LinkUp AI Demo"/>
   </a>
 </p>
 
@@ -27,7 +27,7 @@ The system combines a Spring Boot backend, React frontend, Chrome Extension inte
 ## 🏠 Dashboard
 
 <p align="center">
-  <img src="screenshots/home.png" width="90%" alt="Dashboard"/>
+  <img src="Screenshots/Screenshot 2026-06-03 005319.png" width="90%" alt="Dashboard"/>
 </p>
 
 ---
@@ -35,7 +35,7 @@ The system combines a Spring Boot backend, React frontend, Chrome Extension inte
 ## 🤝 Referral Request Generator
 
 <p align="center">
-  <img src="screenshots/referral-request.png" width="90%" alt="Referral Request"/>
+  <img src="Screenshots/Screenshot 2026-06-03 005609.png" width="90%" alt="Referral Request"/>
 </p>
 
 ---
@@ -43,7 +43,7 @@ The system combines a Spring Boot backend, React frontend, Chrome Extension inte
 ## 💼 Recruiter Outreach Generator
 
 <p align="center">
-  <img src="screenshots/recruiter-outreach.png" width="90%" alt="Recruiter Outreach"/>
+  <img src="Screenshots/Screenshot 2026-06-03 005700.png" width="90%" alt="Recruiter Outreach"/>
 </p>
 
 ---
@@ -51,15 +51,7 @@ The system combines a Spring Boot backend, React frontend, Chrome Extension inte
 ## 💬 LinkedIn Reply Assistant
 
 <p align="center">
-  <img src="screenshots/linkedin-reply.png" width="90%" alt="LinkedIn Reply"/>
-</p>
-
----
-
-## 🌙 Dark Mode Interface
-
-<p align="center">
-  <img src="screenshots/dark-mode.png" width="90%" alt="Dark Mode"/>
+  <img src="Screenshots/Screenshot 2026-06-03 005748.png" width="90%" alt="LinkedIn Reply"/>
 </p>
 
 ---
@@ -67,15 +59,7 @@ The system combines a Spring Boot backend, React frontend, Chrome Extension inte
 ## 🧩 Chrome Extension
 
 <p align="center">
-  <img src="screenshots/chrome-extension.png" width="90%" alt="Chrome Extension"/>
-</p>
-
----
-
-## ⚡ AI Generated Response
-
-<p align="center">
-  <img src="screenshots/generated-response.png" width="90%" alt="Generated Response"/>
+  <img src="Screenshots/Screenshot 2026-06-03 224622.png" width="90%" alt="Chrome Extension"/>
 </p>
 
 ---
