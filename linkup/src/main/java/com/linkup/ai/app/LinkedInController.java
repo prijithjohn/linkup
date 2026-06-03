@@ -6,15 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * REST API endpoints for LinkedIn AI reply generation.
- * All endpoints return consistent JSON format:
- * {
- *   "reply": string,
- *   "tone": string,
- *   "action": string
- * }
- */
+
 @RestController
 @RequestMapping("/api/linkedin")
 @CrossOrigin(origins = "*")
@@ -27,16 +19,7 @@ public class LinkedInController {
         this.service = service;
     }
 
-    /**
-     * Legacy endpoint for React app and Chrome extension.
-     * Generates email/LinkedIn reply with flexible action routing.
-     */
-  
-
-    /**
-     * Fast-reply endpoint (Chrome extension use case).
-     * Optimized for speed: ~2 sentences, lower temperature, fewer tokens.
-     */
+   
     @PostMapping(value = "/fast-reply", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LinkedInResponse> fastReply(@RequestBody(required = false) LinkedInRequest request) {
         logRequest(request);
@@ -49,10 +32,7 @@ public class LinkedInController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Quality-reply endpoint (Web app use case).
-     * Optimized for quality: thoughtful message, higher temperature, more tokens.
-     */
+ 
     @PostMapping(value = "/generate", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LinkedInResponse> generate(@RequestBody(required = false) LinkedInRequest request) {
         logRequest(request);
