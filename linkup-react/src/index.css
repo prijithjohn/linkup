@@ -1,11 +1,9 @@
-/* ==========================================================================
-   LinkUp AI Studio Layout Rules (Appended cleanly to your design system)
-   ========================================================================== */
+
 
 .app-container {
     padding: 40px 60px;
     box-sizing: border-box;
-    text-align: left; /* Counteracts body text-align: center for better form layouts */
+    text-align: left;
 }
 
 @media (max-width: 1024px) {
@@ -30,7 +28,7 @@
 }
 
 .brand-badge {
-    color: var(--accent); /* Uses your custom purple accent token */
+    color: var(--accent); 
     font-weight: 400;
 }
 
@@ -40,7 +38,7 @@
     margin: 8px 0 0 0;
 }
 
-/* Main Split Panel Workspace Grid */
+
 .workspace-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -50,12 +48,11 @@
 
 @media (max-width: 1024px) {
     .workspace-grid {
-        grid-template-columns: 1fr; /* Stacks vertically on mobile screens */
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
 }
 
-/* Panel Modular Cards */
 .panel-card {
     background-color: var(--bg);
     border-radius: 12px;
@@ -76,7 +73,7 @@
     letter-spacing: 0.8px;
 }
 
-/* Form Elements */
+
 .form-group {
     margin-bottom: 16px;
 }
@@ -126,7 +123,7 @@
     line-height: 145%;
 }
 
-/* Buttons Architecture */
+
 .primary-btn {
     width: 100%;
     background-color: var(--accent);
@@ -152,10 +149,10 @@
     cursor: not-allowed;
 }
 
-/* Premium Contrast Workspace Block Output (White Text on Dark Box) */
+
 .output-box-container {
     flex: 1;
-    background-color: #1a191d; /* Solid dark carbon container for visual hierarchy */
+    background-color: #1a191d; 
     border-radius: 8px;
     padding: 20px;
     min-height: 280px;
@@ -168,13 +165,13 @@
     width: 100%;
     font-size: 14px;
     line-height: 155%;
-    color: #ffffff; /* Stark white text rendering profile */
+    color: #ffffff; 
     white-space: pre-wrap;
     font-family: var(--sans);
     text-align: left;
 }
 
-/* Action Control Row */
+
 .action-btn-row {
     display: flex;
     gap: 12px;
