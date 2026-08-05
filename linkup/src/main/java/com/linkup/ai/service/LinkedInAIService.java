@@ -4,8 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.linkup.ai.dto.LinkedInRequest;
 import com.linkup.ai.dto.LinkedInResponse;
-import com.linkup.ai.model.Conversation;
-import com.linkup.ai.repository.ConversationRepository;
+import com.linkup.ai.service.ConversationService;
 import com.linkup.ai.util.AIConstants;
 import com.linkup.ai.util.PromptBuilder;
 import org.slf4j.Logger;
@@ -24,18 +23,18 @@ public class LinkedInAIService {
     private static final Logger logger = LoggerFactory.getLogger(LinkedInAIService.class);
 
     private final WebClient webClient;
-    private final ConversationRepository conversationRepository;
+    private final ConversationService conversationService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @Value("${groq.api.url}")
+    @Value("${groq.api.url:https://api.groq.com/openai/v1/chat/completions}")
     private String groqApiUrl;
 
-    @Value("${groq.api.key}")
+    @Value("${groq.api.key:}")
     private String groqApiKey;
 
-    public LinkedInAIService(WebClient.Builder builder, ConversationRepository conversationRepository) {
+    public LinkedInAIService(WebClient.Builder builder, ConversationService conversationService) {
         this.webClient = builder.build();
-        this.conversationRepository = conversationRepository;
+        this.conversationService = conversationService;
     }
 
    
@@ -55,7 +54,7 @@ public class LinkedInAIService {
 
         // persist conversation asynchronously (best-effort)
         try {
-            saveConversation(request, response);
+            conversationService.saveConversation(request, response);
         } catch (Exception e) {
             logger.warn("Failed to persist conversation: {}", e.getMessage());
         }
@@ -157,23 +156,7 @@ public class LinkedInAIService {
         }
     }
 
-    @Transactional
-    protected void saveConversation(LinkedInRequest request, LinkedInResponse response) {
-        try {
-            Conversation c = new Conversation();
-            c.setMessageContent(request == null ? null : request.getMessageContent());
-            c.setReply(response == null ? null : response.getReply());
-            c.setTone(request == null ? null : request.getTone());
-            c.setAction(request == null ? null : request.getAction());
-            c.setRecipientName(request == null ? null : request.getRecipientName());
-            c.setTargetRole(request == null ? null : request.getTargetRole());
-            c.setTargetCompany(request == null ? null : request.getTargetCompany());
-
-            conversationRepository.save(c);
-        } catch (Exception e) {
-            logger.debug("Persist error: {}", e.getMessage());
-        }
-    }
+    // Persistence is delegated to ConversationService which resolves the authenticated user.
 
     /**
      * Sanitize and validate context input.
