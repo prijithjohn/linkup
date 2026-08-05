@@ -1,7 +1,7 @@
 package com.linkup.ai;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.linkup.ai.app.LinkedInRequest;
+import com.linkup.ai.dto.LinkedInRequest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

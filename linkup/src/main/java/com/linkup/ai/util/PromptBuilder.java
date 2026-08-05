@@ -1,4 +1,4 @@
-package com.linkup.ai.app;
+package com.linkup.ai.util;
 
 import java.util.HashMap;
 import java.util.Map;

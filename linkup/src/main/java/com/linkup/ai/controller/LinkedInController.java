@@ -1,10 +1,15 @@
-package com.linkup.ai.app;
+package com.linkup.ai.controller;
 
+import com.linkup.ai.dto.LinkedInRequest;
+import com.linkup.ai.dto.LinkedInResponse;
+import com.linkup.ai.service.LinkedInAIService;
+import com.linkup.ai.util.AIConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 /**
  * REST API endpoints for LinkedIn AI reply generation.
@@ -38,7 +43,7 @@ public class LinkedInController {
      * Optimized for speed: ~2 sentences, lower temperature, fewer tokens.
      */
     @PostMapping(value = "/fast-reply", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LinkedInResponse> fastReply(@RequestBody(required = false) LinkedInRequest request) {
+    public ResponseEntity<LinkedInResponse> fastReply(@Valid @RequestBody(required = false) LinkedInRequest request) {
         logRequest(request);
         if (isInvalidMessageContent(request)) {
             return ResponseEntity.ok(invalidInputResponse(request));
@@ -54,7 +59,7 @@ public class LinkedInController {
      * Optimized for quality: thoughtful message, higher temperature, more tokens.
      */
     @PostMapping(value = "/generate", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LinkedInResponse> generate(@RequestBody(required = false) LinkedInRequest request) {
+    public ResponseEntity<LinkedInResponse> generate(@Valid @RequestBody(required = false) LinkedInRequest request) {
         logRequest(request);
         if (isInvalidMessageContent(request)) {
             return ResponseEntity.ok(invalidInputResponse(request));

@@ -1,4 +1,4 @@
-package com.linkup.ai.app;
+package com.linkup.ai.util;
 
 /**
  * Constants for AI service configuration and API contracts.

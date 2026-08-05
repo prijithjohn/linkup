@@ -1,11 +1,18 @@
-package com.linkup.ai.app;
+package com.linkup.ai.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.linkup.ai.dto.LinkedInRequest;
+import com.linkup.ai.dto.LinkedInResponse;
+import com.linkup.ai.model.Conversation;
+import com.linkup.ai.repository.ConversationRepository;
+import com.linkup.ai.util.AIConstants;
+import com.linkup.ai.util.PromptBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
@@ -17,6 +24,7 @@ public class LinkedInAIService {
     private static final Logger logger = LoggerFactory.getLogger(LinkedInAIService.class);
 
     private final WebClient webClient;
+    private final ConversationRepository conversationRepository;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${groq.api.url}")
@@ -25,8 +33,9 @@ public class LinkedInAIService {
     @Value("${groq.api.key}")
     private String groqApiKey;
 
-    public LinkedInAIService(WebClient.Builder builder) {
+    public LinkedInAIService(WebClient.Builder builder, ConversationRepository conversationRepository) {
         this.webClient = builder.build();
+        this.conversationRepository = conversationRepository;
     }
 
    
@@ -40,8 +49,18 @@ public class LinkedInAIService {
         String prompt = buildPrompt(action, tone, context, request, fastMode);
         LinkedInResponse response = callGroqAPI(prompt, action, tone, fastMode);
 
-        return response != null ? response
-                : new LinkedInResponse(AIConstants.FALLBACK_REPLY, tone, action);
+        if (response == null) {
+            response = new LinkedInResponse(AIConstants.FALLBACK_REPLY, tone, action);
+        }
+
+        // persist conversation asynchronously (best-effort)
+        try {
+            saveConversation(request, response);
+        } catch (Exception e) {
+            logger.warn("Failed to persist conversation: {}", e.getMessage());
+        }
+
+        return response;
     }
 
     /**
@@ -135,6 +154,24 @@ public class LinkedInAIService {
         } catch (Exception e) {
             logger.error("Failed to parse API response: {}", e.getClass().getSimpleName());
             return null;
+        }
+    }
+
+    @Transactional
+    protected void saveConversation(LinkedInRequest request, LinkedInResponse response) {
+        try {
+            Conversation c = new Conversation();
+            c.setMessageContent(request == null ? null : request.getMessageContent());
+            c.setReply(response == null ? null : response.getReply());
+            c.setTone(request == null ? null : request.getTone());
+            c.setAction(request == null ? null : request.getAction());
+            c.setRecipientName(request == null ? null : request.getRecipientName());
+            c.setTargetRole(request == null ? null : request.getTargetRole());
+            c.setTargetCompany(request == null ? null : request.getTargetCompany());
+
+            conversationRepository.save(c);
+        } catch (Exception e) {
+            logger.debug("Persist error: {}", e.getMessage());
         }
     }
 

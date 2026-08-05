@@ -1,4 +1,4 @@
-package com.linkup.ai.app;
+package com.linkup.ai.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
