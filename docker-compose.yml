@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ./linkup
+    ports:
+      - '8090:8086'
+
+  frontend:
+    build:
+      context: ./linkup-react
+      args:
+        VITE_API_URL: http://backend:8086
+    ports:
+      - '4173:80'
+    environment:
+      VITE_API_URL: http://backend:8086
+    depends_on:
+      - backend
