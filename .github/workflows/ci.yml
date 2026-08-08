@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/devops
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21 and cache Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Build and test backend
+        run: mvn -B -f linkup/pom.xml package
+
+      - name: Set up Node.js 20 and cache npm
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: linkup-react
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: linkup-react
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build backend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./linkup
+          file: ./linkup/Dockerfile
+          push: false
+          load: false
+          tags: linkup-backend:ci
+
+      - name: Build frontend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./linkup-react
+          file: ./linkup-react/Dockerfile
+          push: false
+          load: false
+          tags: linkup-frontend:ci
