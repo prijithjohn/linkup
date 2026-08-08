@@ -46,6 +46,8 @@ function App() {
   const [targetRole, setTargetRole] = useState('');
   const [targetCompany, setTargetCompany] = useState('');
 
+  const apiBaseUrl = import.meta.env.VITE_API_URL?.trim() || '';
+  const apiEndpoint = `${apiBaseUrl.replace(/\/$/, '')}/api/linkedin/generate`;
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -77,7 +79,7 @@ function App() {
       console.log("Submitting request", payload);
 
       const response = await axios.post(
-        "http://localhost:8086/api/linkedin/generate",
+        apiEndpoint,
         payload,
         {
           headers: {
