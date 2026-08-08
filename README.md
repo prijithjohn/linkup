@@ -1,10 +1,12 @@
 # 🚀 LinkUp AI
 
-### AI-Powered LinkedIn Assistant | Spring Boot + React + Chrome Extension + Groq AI
+## AI-Powered LinkedIn Messaging Assistant
 
-LinkUp AI is a full-stack productivity platform that helps professionals, students, and job seekers generate high-quality LinkedIn messages instantly.
+LinkUp AI is a full-stack AI productivity platform that helps users generate personalized LinkedIn messages for referrals, recruiter outreach, connection requests, follow-ups, and conversations.
 
-The system combines a Spring Boot backend, React frontend, Chrome Extension integration, and Groq-powered LLMs to automate professional communication workflows directly inside LinkedIn.
+The platform combines a **React frontend**, **Spring Boot backend**, **Groq-powered LLM integration**, and a **Chrome Extension** to bring AI-assisted professional communication directly into the LinkedIn workflow.
+
+The project is containerized with **Docker and Docker Compose** and includes a **GitHub Actions CI pipeline** for automated backend, frontend, and Docker build validation.
 
 ---
 
@@ -64,286 +66,449 @@ The system combines a Spring Boot backend, React frontend, Chrome Extension inte
 
 ---
 
-# 🎯 Project Vision
+# ✨ Features
 
-Modern networking requires sending:
-
-* Referral Requests
-* Recruiter Outreach Messages
-* Connection Requests
-* Follow-Ups
-* Chat Replies
-
-Most users struggle to write personalized and professional messages consistently.
-
-LinkUp AI solves this by generating context-aware LinkedIn messages in seconds while maintaining a natural and professional tone.
-
----
-
-# ✨ What Makes LinkUp AI Different
-
-Unlike generic AI chat tools, LinkUp AI is specifically optimized for LinkedIn communication workflows.
-
-The system understands:
-
-* Referral networking etiquette
-* Recruiter communication
-* Professional follow-ups
-* Connection request best practices
-* Conversational LinkedIn replies
-
-Each action uses dedicated prompt engineering and response optimization logic.
-
----
-
-# 🚀 Core Features
-
-## 🤝 Referral Request Generator
-
-Generate professional referral requests tailored to:
-
-* Company
-* Employee Name
-* Target Role
-* Job Description
-
-Features:
-
-* Professional wording
-* Personalized networking style
-* Non-pushy communication
-* High response-rate structure
-
----
-
-## 💼 Recruiter Outreach Generator
-
-Create recruiter messages that:
-
-* Highlight relevant skills
-* Show genuine interest
-* Avoid generic templates
-* Remain concise and professional
-
----
-
-## 🔗 Connection Request Generator
-
-Generate networking invitations that:
-
-* Stay within LinkedIn limits
-* Sound natural
-* Encourage acceptance
-* Build authentic connections
-
----
-
-## 💬 Smart LinkedIn Reply Assistant
-
-Paste an existing conversation and generate:
-
-* Professional replies
-* Follow-up responses
-* Networking responses
-* Recruiter responses
-
----
-
-## ⚡ Fast Reply Mode
-
-Optimized endpoint for near-instant responses.
-
-Benefits:
-
-* Reduced latency
-* Faster AI generation
-* Better extension experience
-
----
-
-## 🎭 Dynamic Tone Control
-
-Users can generate responses in multiple styles:
-
-* Professional
-* Friendly
-* Confident
-* Concise
-
-The backend automatically adjusts prompt structure based on selected tone.
-
----
-
-# 🧩 Chrome Extension Integration
-
-LinkUp AI includes a Chrome Extension that works directly inside LinkedIn.
-
-### Features
-
-* LinkedIn DOM Detection
-* Dynamic UI Injection
-* Floating Assistant Panel
-* One-Click Reply Generation
-* Real-Time Content Extraction
-* Fast AI Suggestions
-
-Users can generate messages without leaving LinkedIn.
+- 🤝 AI-powered referral request generation
+- 💼 Recruiter outreach message generation
+- 🔗 LinkedIn connection request generation
+- 💬 Context-aware LinkedIn reply generation
+- ⚡ Fast reply mode for the Chrome Extension
+- 🎭 Multiple communication tones
+- 🧠 Action-specific prompt engineering
+- 📋 One-click message copying
+- 🌙 Dark mode
+- 🧩 Chrome Extension integration
+- 🔍 LinkedIn content extraction
+- 🐳 Dockerized backend and frontend
+- 🔗 Docker Compose full-stack setup
+- 🚀 GitHub Actions CI
+- 🔐 Environment-based API key configuration
 
 ---
 
 # 🏗️ Architecture
 
-```mermaid
-graph TD
-
-A[LinkedIn Website]
---> B[Chrome Extension]
-
-B --> C[React Frontend]
-
-C --> D[Spring Boot Backend]
-
-D --> E[Groq API]
-
-E --> D
-D --> C
-C --> B
-B --> A
+```text
+                         LinkedIn
+                            │
+                            ▼
+                   Chrome Extension
+                            │
+                            ▼
+                     React Frontend
+                            │
+                            ▼
+                    Nginx Container
+                            │
+                            ▼
+                  Spring Boot Backend
+                            │
+                            ▼
+                        Groq API
+                            │
+                            ▼
+                    AI Generated Reply
 ```
 
 ---
 
 # 🛠️ Tech Stack
 
-| Layer         | Technology         |
-| ------------- | ------------------ |
-| Frontend      | React              |
-| UI Framework  | Material UI        |
-| Backend       | Spring Boot        |
-| API Client    | WebClient          |
-| AI Provider   | Groq               |
-| LLM Model     | Llama 3.3 70B      |
-| Extension     | JavaScript         |
-| HTTP Client   | Axios              |
-| Validation    | Jakarta Validation |
-| Serialization | Jackson            |
-| Build Tool    | Maven              |
+| Layer | Technology |
+|---|---|
+| Frontend | React |
+| UI | Material UI |
+| Build Tool | Vite |
+| HTTP Client | Axios |
+| Backend | Spring Boot 3.3 |
+| Language | Java 21 |
+| API Client | Spring WebClient |
+| AI Provider | Groq |
+| LLM | Llama |
+| Extension | JavaScript |
+| Validation | Jakarta Validation |
+| Serialization | Jackson |
+| Build Tool | Maven |
+| Web Server | Nginx |
+| Containerization | Docker |
+| Orchestration | Docker Compose |
+| CI/CD | GitHub Actions |
 
 ---
 
-# ⚙️ Backend Engineering
+# ⚙️ Core Workflows
 
-The backend acts as a secure AI gateway.
+## 🤝 Referral Requests
 
-### Responsibilities
+Generate personalized referral messages using:
 
-* Prompt generation
-* Action routing
-* Tone handling
-* Request validation
-* Response parsing
-* Error handling
-* API security
-
-### Implemented Using
-
-* Spring Boot REST APIs
-* DTO Architecture
-* Validation Layer
-* Service Layer Abstraction
-* WebClient Integration
+- Employee name
+- Company
+- Target role
+- Job description
+- Selected tone
 
 ---
 
-# 🎨 Frontend Engineering
+## 💼 Recruiter Outreach
 
-The React frontend was optimized for usability and speed.
+Generate concise recruiter messages designed to communicate:
 
-### Features
-
-* Material UI Design
-* Dark Mode
-* Dynamic Forms
-* Action-Based UI Rendering
-* Loading States
-* Error Handling
-* Clipboard Support
-* Animated Response Rendering
+- Relevant skills
+- Interest in the opportunity
+- Professional intent
+- Role-specific context
 
 ---
 
-# ⚡ Performance Optimizations
+## 🔗 Connection Requests
 
-Several optimizations were implemented during development.
+Generate natural LinkedIn connection messages while keeping the message concise and professional.
 
-### Smart Action Normalization
+---
 
-Frontend actions are converted into backend-safe action types.
+## 💬 LinkedIn Replies
+
+Paste an existing LinkedIn conversation and generate an appropriate response based on the conversation context.
+
+---
+
+## ⚡ Fast Reply Mode
+
+The Chrome Extension uses a dedicated fast-reply endpoint optimized for quick AI responses.
 
 ```text
-LinkedIn Follow-up
-→ REFERRAL_REQUEST
-
-Cold Pitch
-→ COLD_PITCH
-
-LinkedIn Reply
-→ LINKEDIN_REPLY
+POST /api/linkedin/fast-reply
 ```
 
-This prevents invalid API requests.
+---
+
+# 🧠 AI Processing
+
+LinkUp AI uses action-specific prompt engineering rather than treating every request as a generic chatbot query.
+
+The system maps user actions to specialized generation workflows.
+
+```text
+Referral Request
+        ↓
+REFERRAL_REQUEST
+
+Cold Pitch
+        ↓
+COLD_PITCH
+
+LinkedIn Reply
+        ↓
+LINKEDIN_REPLY
+
+Connection Request
+        ↓
+CONNECTION_REQUEST
+```
+
+The backend then constructs an appropriate prompt based on:
+
+- Action
+- Tone
+- Recipient
+- Company
+- Target role
+- Message context
 
 ---
 
-### Fast Reply Endpoint
+# 🧩 Chrome Extension
 
-Created a dedicated endpoint for extension-based generation.
+The LinkUp AI Chrome Extension integrates directly with LinkedIn.
 
-Benefits:
+### Capabilities
 
-* Reduced response time
-* Better user experience
-* Lower frontend processing overhead
-
----
-
-### Prompt Engineering Optimization
-
-Custom prompts were created for each action.
-
-This improved:
-
-* Response quality
-* Consistency
-* Professional tone
-* Networking effectiveness
+- LinkedIn page content detection
+- Dynamic UI injection
+- Context extraction
+- AI reply generation
+- Fast reply workflow
+- Message assistance without leaving LinkedIn
 
 ---
 
-### Frontend UX Improvements
+# 🏗️ Project Structure
 
-Optimizations include:
-
-* Dynamic form rendering
-* Input validation
-* Auto-reset states
-* Improved loading indicators
-* Cleaner response display
+```text
+LinkUp/
+│
+├── linkup/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   └── resources/
+│   │   ├── test/
+│   │   └── Dockerfile
+│   │
+│   └── pom.xml
+│
+├── linkup-react/
+│   ├── src/
+│   ├── public/
+│   ├── Dockerfile
+│   ├── nginx.conf
+│   ├── package.json
+│   └── package-lock.json
+│
+├── linkup-ext/
+│   └── Chrome Extension files
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── docker-compose.yml
+├── README.md
+└── LICENSE
+```
 
 ---
 
-# 🔐 Security Improvements
+# 🐳 Docker
 
-## API Key Protection
+The complete application can be run using Docker Compose.
 
-One major engineering challenge was protecting AI credentials.
+### Services
 
-Improvements:
+```text
+Frontend
+React + Nginx
+     │
+     ▼
+Backend
+Spring Boot
+     │
+     ▼
+Groq API
+```
 
-* Removed exposed API keys
-* Migrated secrets to environment variables
-* Backend-only API access
-* Prevented frontend key exposure
+### Run the application
+
+Clone the repository:
+
+```bash
+git clone https://github.com/prijithjohn/linkup.git
+
+cd linkup
+```
+
+Create a `.env` file:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+Then run:
+
+```bash
+docker compose up --build
+```
+
+### Application
+
+Frontend:
+
+```text
+http://localhost:4173
+```
+
+Backend:
+
+```text
+http://localhost:8090
+```
+
+Stop the containers:
+
+```bash
+docker compose down
+```
+
+---
+
+# 🔑 Environment Variables
+
+LinkUp AI keeps API credentials outside the source code.
+
+### Required
+
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+The backend reads the key using:
+
+```properties
+groq.api.key=${GROQ_API_KEY}
+```
+
+Never commit the `.env` file or real API credentials to Git.
+
+---
+
+# 🔄 Local Development
+
+## Backend
+
+Navigate to the backend:
+
+```bash
+cd linkup
+```
+
+Set the Groq API key.
+
+PowerShell:
+
+```powershell
+$env:GROQ_API_KEY="your_groq_api_key"
+```
+
+Run:
+
+```bash
+mvn spring-boot:run
+```
+
+Backend:
+
+```text
+http://localhost:8086
+```
+
+---
+
+## Frontend
+
+Navigate to:
+
+```bash
+cd linkup-react
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
+
+```bash
+npm run dev
+```
+
+---
+
+# 🧩 Chrome Extension Setup
+
+1. Open Chrome.
+
+2. Navigate to:
+
+```text
+chrome://extensions
+```
+
+3. Enable **Developer Mode**.
+
+4. Select **Load unpacked**.
+
+5. Select:
+
+```text
+linkup-ext/
+```
+
+6. Open LinkedIn.
+
+7. Use the LinkUp AI assistant.
+
+---
+
+# 🧪 Testing & Validation
+
+The project includes automated build validation through GitHub Actions.
+
+### Backend
+
+```bash
+mvn test
+```
+
+### Frontend
+
+```bash
+npm ci
+npm run build
+```
+
+### Docker
+
+```bash
+docker build -t linkup-backend ./linkup
+
+docker build -t linkup-frontend ./linkup-react
+```
+
+### Full Stack
+
+```bash
+docker compose up --build
+```
+
+---
+
+# 🚀 CI/CD
+
+GitHub Actions automatically validates the project.
+
+```text
+Git Push
+   │
+   ▼
+GitHub Actions
+   │
+   ├── Java 21
+   │
+   ├── Maven Build & Tests
+   │
+   ├── Node.js 20
+   │
+   ├── React Build
+   │
+   ├── Backend Docker Build
+   │
+   └── Frontend Docker Build
+```
+
+The CI pipeline helps detect:
+
+- Backend compilation failures
+- Test failures
+- Frontend build failures
+- Docker build failures
+
+---
+
+# 🔐 Security
+
+LinkUp AI uses environment-based configuration for sensitive credentials.
+
+Implemented practices include:
+
+- API keys stored outside source code
+- Environment variable configuration
+- No frontend exposure of Groq credentials
+- `.env` excluded from Git
+- GitHub secret scanning awareness
+- Test-specific configuration for CI
 
 Example:
 
@@ -353,223 +518,74 @@ groq.api.key=${GROQ_API_KEY}
 
 ---
 
-## GitHub Secret Protection
-
-Implemented secure repository practices:
-
-* Secret scanning compliance
-* Credential removal from Git history
-* Environment-based configuration
-
----
-
-## Request Validation
-
-Input validation prevents:
-
-* Invalid requests
-* Missing fields
-* Improper action types
-
----
-
-# 🧪 Testing & Debugging
-
-During development several issues were identified and resolved.
-
-### Spring Boot Test Configuration
-
-Resolved:
-
-* Missing MockMvc dependencies
-* Test context failures
-* Maven build issues
-
----
-
-### Maven Dependency Cleanup
-
-Fixed:
-
-* Duplicate dependencies
-* Dependency conflicts
-* Spring Boot test setup
-
----
-
-### Frontend-Backend Integration
-
-Resolved:
-
-* Endpoint mismatches
-* Action mapping errors
-* API response handling issues
-
----
-
-### Chrome Extension Stability
-
-Improved:
-
-* DOM detection
-* Injection reliability
-* LinkedIn compatibility
-
----
-
 # 📊 Supported Workflows
 
-| Workflow            | Status |
-| ------------------- | ------ |
-| Referral Requests   | ✅      |
-| Recruiter Outreach  | ✅      |
-| Connection Requests | ✅      |
-| Chat Replies        | ✅      |
-| Follow-Ups          | ✅      |
-| Fast Replies        | ✅      |
+| Workflow | Status |
+|---|---|
+| Referral Requests | ✅ |
+| Recruiter Outreach | ✅ |
+| Connection Requests | ✅ |
+| LinkedIn Replies | ✅ |
+| Follow-Ups | ✅ |
+| Fast Replies | ✅ |
+| Chrome Extension | ✅ |
+| Docker Backend | ✅ |
+| Docker Frontend | ✅ |
+| Docker Compose | ✅ |
+| GitHub Actions CI | 🚧 |
 
----
-
-# ⚙️ Installation
-
-## Clone Repository
-
-```bash
-git clone https://github.com/prijithjohn/linkup.git
-cd linkup
-```
-
----
-
-## Backend Setup
-
-Create:
-
-```properties
-src/main/resources/application.properties
-```
-
-Add:
-
-```properties
-server.port=8086
-
-groq.api.url=https://api.groq.com/openai/v1/chat/completions
-groq.api.key=YOUR_GROQ_API_KEY
-```
-
-Run Backend:
-
-```bash
-mvn spring-boot:run
-```
-
-Backend runs on:
-
-```text
-http://localhost:8086
-```
-
----
-
-## Frontend Setup
-
-```bash
-cd frontend
-
-npm install
-
-npm run dev
-```
-
----
-
-## Chrome Extension Setup
-
-1. Open Chrome
-
-2. Go to:
-
-```text
-chrome://extensions
-```
-
-3. Enable Developer Mode
-
-4. Click Load Unpacked
-
-5. Select the extension folder
-
-6. Open LinkedIn and start using LinkUp AI
-
----
-
-# 🚀 Future Roadmap
-
-* Resume Analyzer
-* Job Description Matching
-* ATS Resume Review
-* AI Networking Coach
-* Saved Templates
-* User Authentication
-* Cloud Deployment
-* Docker Support
-* Analytics Dashboard
-* Team Collaboration Features
+> CI configuration is implemented; final GitHub Actions verification is still being refined.
 
 ---
 
 # 💡 Engineering Skills Demonstrated
 
-✅ Full Stack Development
-
-✅ Spring Boot Backend Development
-
-✅ React Frontend Engineering
-
-✅ Chrome Extension Development
-
-✅ REST API Design
-
-✅ Prompt Engineering
-
-✅ AI Integration
-
-✅ Security Best Practices
-
-✅ Maven Dependency Management
-
-✅ Testing & Debugging
-
-✅ System Design
-
-✅ Product Development Thinking
+- Full-Stack Development
+- Java & Spring Boot
+- REST API Design
+- React & Vite
+- Material UI
+- Chrome Extension Development
+- AI/LLM API Integration
+- Prompt Engineering
+- Docker & Docker Compose
+- Nginx
+- GitHub Actions
+- CI/CD
+- API Security
+- Environment-Based Configuration
+- Maven
+- HTTP/WebClient
+- Frontend-Backend Integration
+- Software Architecture
 
 ---
 
 # 👨‍💻 Author
 
-## Prijith John
+**Prijith John**
 
 Computer Science Engineer
 
 ### Areas of Interest
 
-* Full Stack Development
-* Backend Engineering
-* AI Applications
-* Product Development
-* Chrome Extensions
-* Software Architecture
+- Backend Engineering
+- Full-Stack Development
+- AI Applications
+- Software Architecture
+- Product Development
+- Developer Tools
+
+### Connect
+
+- GitHub: https://github.com/prijithjohn
+- LinkedIn: https://linkedin.com/in/prijith-john-dev
+- Portfolio: https://prijith-portfolio.vercel.app
 
 ---
 
-# ⭐ Conclusion
+# ⭐ Support
 
-LinkUp AI is more than a message generator.
+If you found LinkUp AI useful or interesting, consider giving the repository a **⭐ Star** on GitHub.
 
-It is a practical productivity platform that combines AI, full-stack engineering, browser extensions, and prompt engineering to solve a real-world networking problem.
-
-The project demonstrates end-to-end product development—from backend architecture and frontend experience to browser automation, AI integration, security, testing, performance optimization, and deployment readiness.
-
-If you found this project interesting, consider giving it a ⭐ on GitHub.
+It helps the project reach more developers and supports continued development.
